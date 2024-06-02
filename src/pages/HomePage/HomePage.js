@@ -7,6 +7,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const modProducts = (products.map(product =>({...product, quantity:1}) ))
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,7 +34,7 @@ const HomePage = () => {
       </header>
       <section className={styles.productContainer}>
         {isLoading && <h2>Loading Products...</h2>}
-        {products.map((product) => (
+        {modProducts.map((product) => (
           <div className={styles.productCard} key={product.id}>
             <p>{product.title}</p>
             <img width="100" alt={product.title} src={product.image} />
