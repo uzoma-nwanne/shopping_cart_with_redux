@@ -42,7 +42,7 @@ const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
         return{
           ...state,
           isOpen:true,
-          items: state.items.map(item=>item.id === itemExist.id ?  {...item, quantity:item.quantity + 1}: item)
+          items: [...state, {...itemExist, quantity:itemExist.quantity +1 }]
         }
       }
       return {

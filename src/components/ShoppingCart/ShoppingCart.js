@@ -24,7 +24,7 @@ const ShoppingCart = () => {
 			</div>
 			<h2>Items</h2>
 			{items.map((item) => (
-				<div key={item.id}>
+				<div key={item.id} data-testid={item.id}>
 					<p>{item.title}</p>
 					<img width='100' alt={item.title} src={item.image} />
 					<div style={{display:'flex', flexDirection:'column'}}>
