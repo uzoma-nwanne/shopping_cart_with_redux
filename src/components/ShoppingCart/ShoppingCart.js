@@ -12,7 +12,6 @@ const ShoppingCart = () => {
 	}
 
 	const { items = [] } = cart;
-	console.log(items)
 	const total = items.reduce((acc, item) => item.price * item.quantity + acc, 0);
 
 	return (

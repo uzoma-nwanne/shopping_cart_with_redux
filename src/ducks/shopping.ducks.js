@@ -35,29 +35,32 @@ const addToCartReducer = (state = { isOpen: false, items: [] }, action) => {
         ...state,
         isOpen: payload,
       };
-    case ADD_TO_CART:
-     {
-      const itemExist = state.items.find(item => item.id === payload.id)
-      if(itemExist){
-        return{
+    case ADD_TO_CART: {
+      const itemExist = state.items.find((item) => item.id === payload.id);
+      if (itemExist) {
+        return {
           ...state,
-          isOpen:true,
-          items: state.items.map((item)=>item.id ==itemExist.id?({...item, quantity:item.quantity+1}):item)
-        }
-      }
+          isOpen: true,
+          items: state.items.map((item) =>
+            item.id === itemExist.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        }}
+
+        return {
+          ...state,
+          isOpen: true,
+          items: [...state.items, payload],
+        };
+      
+    }
+    case REMOVE_FROM_CART:
       return {
         ...state,
         isOpen: true,
-        items: [...state.items,payload],
+        items: state.items.filter((item) => item.id !== payload),
       };
-     }
-
-      case REMOVE_FROM_CART:
-        return{
-            ...state,
-            isOpen: true,
-            items: state.items.filter(item => item.id !== payload)
-        };
 
     default:
       return state;
